@@ -12,3 +12,20 @@ export class Character {
     this.attackPower = attackPower;
   }
 }
+
+export class Student extends Character {
+  constructor(name, health, endurance, fortitude, attackPower) {
+    super(name, health, endurance, fortitude, attackPower);
+    this.level = 1;
+    this.currentExp = 0;
+    this.maxExp = 0;
+  }
+}
+
+export class Enemy extends Character {
+  constructor(name, health, endurance, fortitude, attackPower, enemyExp) {
+    super(name, health, endurance, fortitude, attackPower);
+    this.enemyExp = enemyExp;
+  }
+
+}
