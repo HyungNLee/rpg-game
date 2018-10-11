@@ -11,6 +11,12 @@ export class Character {
     this.maxFortitude = fortitude;
     this.attackPower = attackPower;
   }
+
+  takeDamage(damage) {
+    this.currentHealth -= damage;
+    this.checkDeath();
+  }
+
 }
 
 export class Student extends Character {
@@ -20,12 +26,38 @@ export class Student extends Character {
     this.currentExp = 0;
     this.maxExp = 0;
   }
+
+  basicAttack(enemy) {
+    console.log(`${this.name} used coding! ${enemy.name} took ${this.attackPower} damage!`);
+    enemy.takeDamage(this.attackPower);
+  }
+
+  checkDeath() {
+    if (this.currentHealth <= 0) {
+      this.currentHealth = 0;
+      console.log(`${this.name} has dropped out of Epicodus!`);
+    }
+  }
+
 }
 
 export class Enemy extends Character {
-  constructor(name, health, endurance, fortitude, attackPower, enemyExp) {
+  constructor(name, health, endurance, fortitude, attackPower, enemyExp, attackString) {
     super(name, health, endurance, fortitude, attackPower);
     this.enemyExp = enemyExp;
+    this.basicAttackString = attackString;
+  }
+
+  basicAttack(enemy) {
+    console.log(`${this.name} used ${this.basicAttackString}! ${enemy.name} took ${this.attackPower} damage!`);
+    enemy.takeDamage(this.attackPower);
+  }
+
+  checkDeath() {
+    if (this.currentHealth <= 0) {
+      this.currentHealth = 0;
+      console.log(`${this.name} has been unit-tested!`);
+    }
   }
 
 }
