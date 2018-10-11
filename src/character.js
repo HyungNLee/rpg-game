@@ -57,8 +57,19 @@ export class Student extends Character {
     this.level++;
     this.checkLevelUp();
   }
-  
 
+  specialAttack(enemy) {
+    enemy.takeDamage(this.attackPower + 20);
+    console.log(`${this.name} uses Hyewon's GitHub! ${enemy.name} took ${this.attackPower + 20} damage`);
+  }
+
+  rest() {
+    this.currentEndurance += 20;
+    if(this.currentEndurance > this.maxEndurance){
+      this.currentEndurance = this.maxEndurance;
+    }
+    console.log(`${this.name} took a smoke break. Endurance +20`);
+  }
 }
 
 export class Enemy extends Character {

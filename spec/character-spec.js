@@ -85,3 +85,22 @@ describe('checkLevelUp() and gainEXP for Student', function() {
     expect(chan.level).toEqual(3);
   });
 });
+
+describe('specialAttack() damage', function() {
+  it('should test if specialAttack() does additional damage', function() {
+    let chan = new Student("Chan", 100, 100, 100, 5);
+    let enemy = new Enemy("Intro", 100, 100, 100, 5, 10,  "wrong syntax");
+    chan.specialAttack(enemy);
+    expect(enemy.currentHealth).toEqual(75);
+  });
+});
+
+describe('rest() for student', function() {
+  it('should test if rest() add additional endurance to the student', function(){
+    let chan = new Student("Chan", 100, 100, 100, 5);
+    chan.currentEndurance = 80;
+    expect(chan.currentEndurance).toEqual(80);
+    chan.rest();
+    expect(chan.currentEndurance).toEqual(100);
+  })
+})
