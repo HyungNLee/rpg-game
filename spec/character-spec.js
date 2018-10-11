@@ -51,11 +51,20 @@ describe('basicAttack and takeDamage', function() {
   });
 });
 
-describe('checkDeath', function(){
+describe('checkDeath for Enemy', function(){
   it('should test if checkDeath() when currentHealth === 0', function(){
     let chan = new Student("Chan", 100, 100, 100, 101);
     let enemy = new Enemy("Intro", 100, 100, 100, 5, 10, "wrong syntax");
     chan.basicAttack(enemy);
     expect(enemy.currentHealth).toEqual(0);
+  });
+});
+
+describe('checkDeath for Student', function(){
+  it('should test if checkDeath() when currentHealth === 0', function(){
+    let chan = new Student("Chan", 100, 100, 100, 5);
+    let enemy = new Enemy("Intro", 100, 100, 100, 101, 10, "wrong syntax");
+    enemy.basicAttack(chan);
+    expect(chan.currentHealth).toEqual(0);
   });
 });
