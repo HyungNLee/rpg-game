@@ -9,7 +9,7 @@ export class Character {
     this.maxEndurance = endurance;
     this.currentFortitude = fortitude;
     this.maxFortitude = fortitude;
-    this.attackPower = attackPower;
+    this.attackPower = attackPower; 
   }
 
   takeDamage(damage) {
@@ -24,11 +24,12 @@ export class Student extends Character {
     super(name, health, endurance, fortitude, attackPower);
     this.level = 1;
     this.currentExp = 0;
-    this.maxExp = 0;
+    this.maxExp = 100;
   }
 
   basicAttack(enemy) {
     console.log(`${this.name} used coding! ${enemy.name} took ${this.attackPower} damage!`);
+    // subtract # from endurance.
     enemy.takeDamage(this.attackPower);
   }
 
@@ -38,6 +39,25 @@ export class Student extends Character {
       console.log(`${this.name} has dropped out of Epicodus!`);
     }
   }
+
+  gainExp(enemy) {
+    this.currentExp += enemy.enemyExp;
+    this.checkLevelUp();
+  }
+  
+  checkLevelUp(){
+    if (this.currentExp >= this.maxExp) {
+      let rollover = this.currentExp - this.maxExp;
+      this.currentExp = rollover;
+      this.levelUp();
+    }
+  }
+
+  levelUp() {
+    this.level++;
+    this.checkLevelUp();
+  }
+  
 
 }
 
@@ -50,6 +70,7 @@ export class Enemy extends Character {
 
   basicAttack(enemy) {
     console.log(`${this.name} used ${this.basicAttackString}! ${enemy.name} took ${this.attackPower} damage!`);
+    // subtract # from endurance.
     enemy.takeDamage(this.attackPower);
   }
 
